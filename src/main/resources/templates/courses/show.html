@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+<div layout:fragment="content">
+    <div class="my-4">
+        <h1 th:text="${'Kurs' + course.name}"></h1>
+        <form th:action="${'/courses/' + course.id + '/delete'}" method="post" class="form">
+            <button type="submit" class="btn btn-danger">Löschen</button>
+        </form>
+    </div>
+
+    <table th:if="${course != null and !course.entries.empty}" class="table">
+        <tr th:each="entry : ${course.entries}">
+            <td th:text="${entry.courseName}"></td>
+        </tr>
+    </table>
+
+    <hr />
+    <p class="small">
+        <a href="/courses/">Index</a>
+    </p>
+</div>
+</body>
+</html>
